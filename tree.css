@@ -1,0 +1,22 @@
+body{
+    background-image: linear-gradient(red, green);
+    background-attachment: fixed;
+}
+
+#header{
+    color: azure;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#room{
+    position:relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+#tree{
+    position: absolute;
+    top: 20%;
+    left:30%;
+}
