@@ -17,3 +17,9 @@ document.addEventListener("DOMContentLoaded", () =>{
     document.getElementById("gift3").addEventListener("click", () => {})
 })
 
+// Functions
+
+function dropOrnament(){
+    // Move the element down until it reaches the floor, then play a glass breaking sound,
+    // and replace the element's image with a broken variant.
+}
