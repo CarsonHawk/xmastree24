@@ -58,7 +58,7 @@ function dropOrn(ornDrop) {
         ornDrop.style.top = i + "px";
     }
     swapImage(ornDrop, 'ornbrk.png')
-    let ornBreak = new Audio('sfx/338691__natemarler__glass-break.wav');
+    let ornBreak = new Audio('sfx/338691__natemarler__glass-break-trim.wav');
     ornBreak.play();
 }
 
