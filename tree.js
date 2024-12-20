@@ -14,9 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // document.getElementById("orn7").addEventListener("click", () => {})
     // document.getElementById("orn8").addEventListener("click", () => {})
     document.querySelectorAll('.ornament').forEach(element => {
-        element.addEventListener("click", () =>{
+        element.addEventListener("click", () => {
             // add drop ornament function to all ornament elements
-            dropOrnament(element);
+            dropOrn(element);
         })
     });
 
@@ -33,16 +33,17 @@ function dropOrnament(ornToDrop) {
     let animInt = null;
     // let pos = ornToDrop.style.top; // This one drops it from the top of the tree, but nicely.
     // let pos = ornToDrop.offsetTop; // This and the parseFloat one just teleport it.
-    let pos = parseFloat(window.getComputedStyle(ornToDrop).getPropertyValue("top").replace('px',''));
+    let pos = parseFloat(window.getComputedStyle(ornToDrop).getPropertyValue("top").replace('px', ''));
     clearInterval(animInt);
     animInt = setInterval(moveIt, 5);
-    function moveIt(){
-        if(ornToDrop.style.top >= 90+"%"){
+    function moveIt() {
+        // Might have to resort to pixels here.
+        if (ornToDrop.style.top >= 90 + "%") {
             clearInterval(animInt);
             swapImage(ornToDrop, 'ornbrk.png')
             let ornBreak = new Audio('sfx/338691__natemarler__glass-break.wav');
             ornBreak.play();
-        }else{
+        } else {
             pos++;
             ornToDrop.style.top = pos + "%";
         }
@@ -50,8 +51,23 @@ function dropOrnament(ornToDrop) {
 
     // ornToDrop.style.top = 90 + "%";
 }
-function swapImage(elementToSwap, newImage){
+// Let's try that again...
+function dropOrn(ornDrop) {
+    let pos = parseFloat(window.getComputedStyle(ornDrop).getPropertyValue("top").replace('px', ''));
+    for (i = pos; i < 400; i++) {
+        ornDrop.style.top = i + "px";
+    }
+    swapImage(ornDrop, 'ornbrk.png')
+    let ornBreak = new Audio('sfx/338691__natemarler__glass-break.wav');
+    ornBreak.play();
+}
+
+function swapImage(elementToSwap, newImage) {
     // Select the targeted element and replace it with the specified new image.
     console.log(newImage);
-    elementToSwap.style.backgroundImage = "url("+newImage+")";
+    elementToSwap.style.backgroundImage = "url(" + newImage + ")";
 }
+
+// function rockToPane(){
+
+// }
