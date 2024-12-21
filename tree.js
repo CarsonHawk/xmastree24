@@ -1,22 +1,20 @@
+// Some variables.
+const brokenOrns = new Array;
+
 document.addEventListener("DOMContentLoaded", () => {
     // Logic can go here.
     document.getElementById("tree").addEventListener("click", () => {
 
     })
-    // document.getElementById("orn1").addEventListener("click", () => {
-    //     dropOrnament(document.getElementById("orn1"));
-    // })
-    // document.getElementById("orn2").addEventListener("click", () => {})
-    // document.getElementById("orn3").addEventListener("click", () => {})
-    // document.getElementById("orn4").addEventListener("click", () => {})
-    // document.getElementById("orn5").addEventListener("click", () => {})
-    // document.getElementById("orn6").addEventListener("click", () => {})
-    // document.getElementById("orn7").addEventListener("click", () => {})
-    // document.getElementById("orn8").addEventListener("click", () => {})
+    document.getElementById("snowman").addEventListener("click", () => {
+        snowmanWave();
+        swapImage(document.getElementById("snowman"),"snowman.png");
+    })
+
     document.querySelectorAll('.ornament').forEach(element => {
         element.addEventListener("click", () => {
             // add drop ornament function to all ornament elements
-            dropOrn(element);
+            dropOrnament(element);
         })
     });
 
@@ -35,23 +33,24 @@ function dropOrnament(ornToDrop) {
     // let pos = ornToDrop.offsetTop; // This and the parseFloat one just teleport it.
     let pos = parseFloat(window.getComputedStyle(ornToDrop).getPropertyValue("top").replace('px', ''));
     clearInterval(animInt);
-    animInt = setInterval(moveIt, 5);
+    animInt = setInterval(moveIt, 1);
     function moveIt() {
         // Might have to resort to pixels here.
-        if (ornToDrop.style.top >= 90 + "%") {
+        if (parseFloat(window.getComputedStyle(ornToDrop).getPropertyValue("top").replace('px', '')) >= 400) {
             clearInterval(animInt);
             swapImage(ornToDrop, 'ornbrk.png')
-            let ornBreak = new Audio('sfx/338691__natemarler__glass-break.wav');
+            let ornBreak = new Audio('sfx/338691__natemarler__glass-break-trim.wav');
             ornBreak.play();
         } else {
             pos++;
-            ornToDrop.style.top = pos + "%";
+            ornToDrop.style.top = pos + "px";
         }
     }
 
     // ornToDrop.style.top = 90 + "%";
 }
 // Let's try that again...
+// Nevermind, I got the original working right!
 function dropOrn(ornDrop) {
     let pos = parseFloat(window.getComputedStyle(ornDrop).getPropertyValue("top").replace('px', ''));
     for (i = pos; i < 400; i++) {
@@ -64,10 +63,24 @@ function dropOrn(ornDrop) {
 
 function swapImage(elementToSwap, newImage) {
     // Select the targeted element and replace it with the specified new image.
-    console.log(newImage);
     elementToSwap.style.backgroundImage = "url(" + newImage + ")";
 }
 
-// function rockToPane(){
+function rockToPane(){
 
-// }
+}
+function snowmanWave(){
+    let mans = document.getElementById("snowman");
+    //let animInt = null;
+    //clearInterval(animInt);
+    //animInt = setInterval(waving(),1);
+    //function waving(){
+        setTimeout(() => {
+            swapImage(mans,"snowman_wav0.png");
+          }, "1000");
+          ;
+        setTimeout(() => {
+            swapImage(mans,"snowman_wav1.png");
+          }, "1000");
+    //}
+}
