@@ -1,5 +1,6 @@
 // Some variables.
 const brokenOrns = new Array;
+const giftIndex = ['teddy bear', 'toy train', 'letter blocks', 'PS2', 'baseball', 'lump of coal', 'huge d20', 'brick cellphone', 'camera', 'book'];
 
 document.addEventListener("DOMContentLoaded", () => {
     // Logic can go here.
@@ -8,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     document.getElementById("snowman").addEventListener("click", () => {
         snowmanWave();
-        swapImage(document.getElementById("snowman"),"snowman.png");
     })
 
     document.querySelectorAll('.ornament').forEach(element => {
@@ -46,20 +46,8 @@ function dropOrnament(ornToDrop) {
             ornToDrop.style.top = pos + "px";
         }
     }
+}
 
-    // ornToDrop.style.top = 90 + "%";
-}
-// Let's try that again...
-// Nevermind, I got the original working right!
-function dropOrn(ornDrop) {
-    let pos = parseFloat(window.getComputedStyle(ornDrop).getPropertyValue("top").replace('px', ''));
-    for (i = pos; i < 400; i++) {
-        ornDrop.style.top = i + "px";
-    }
-    swapImage(ornDrop, 'ornbrk.png')
-    let ornBreak = new Audio('sfx/338691__natemarler__glass-break-trim.wav');
-    ornBreak.play();
-}
 
 function swapImage(elementToSwap, newImage) {
     // Select the targeted element and replace it with the specified new image.
@@ -71,16 +59,28 @@ function rockToPane(){
 }
 function snowmanWave(){
     let mans = document.getElementById("snowman");
-    //let animInt = null;
-    //clearInterval(animInt);
-    //animInt = setInterval(waving(),1);
-    //function waving(){
         setTimeout(() => {
             swapImage(mans,"snowman_wav0.png");
-          }, "1000");
-          ;
+          }, "500");
         setTimeout(() => {
             swapImage(mans,"snowman_wav1.png");
           }, "1000");
-    //}
+          setTimeout(() => {
+            swapImage(mans,"snowman_wav0.png");
+          }, "1500");
+        setTimeout(() => {
+            swapImage(mans,"snowman_wav1.png");
+          }, "2000");
+          setTimeout(() => {
+            swapImage(mans,"snowman_wav0.png");
+          }, "2500");
+        setTimeout(() => {
+            swapImage(mans,"snowman_wav1.png");
+          }, "3000");
+          setTimeout(() => {
+            swapImage(mans,"snowman_wav0.png");
+          }, "3500");
+          setTimeout(() => {
+            swapImage(mans,"snowman.png");
+          }, "4000");
 }
