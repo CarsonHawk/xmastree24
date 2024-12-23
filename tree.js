@@ -1,6 +1,7 @@
 // Some variables.
-const brokenOrns = new Array;
-const giftIndex = ['teddy bear', 'toy train', 'letter blocks', 'PS2', 'baseball', 'lump of coal', 'huge d20', 'brick cellphone', 'camera', 'book'];
+let brokenOrns = new Array;
+let giftIndex = ['teddy bear', 'toy train', 'letter blocks', 'PS2', 'baseball', 'lump of coal', 'huge d20', 'brick cellphone', 'camera', 'book'];
+let pictureIsSwapped = false;
 
 document.addEventListener("DOMContentLoaded", () => {
     // Logic can go here.
@@ -9,6 +10,17 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     document.getElementById("snowman").addEventListener("click", () => {
         snowmanWave();
+    })
+    document.getElementById("painting").addEventListener("click", () =>{
+        let elem = document.getElementById("painting");
+        if(!pictureIsSwapped){
+            swapImage(elem, "picture1.png");
+            pictureIsSwapped = true;
+            console.log(pictureIsSwapped);
+        }else{
+            swapImage(elem, "picture0.png");
+            pictureIsSwapped = false;
+        }
     })
 
     document.querySelectorAll('.ornament').forEach(element => {
