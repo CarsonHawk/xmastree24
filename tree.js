@@ -82,7 +82,7 @@ function dropOrnament(ornToDrop) {
         if (parseFloat(window.getComputedStyle(ornToDrop).getPropertyValue("top").replace('px', '')) >= 400) {
             clearInterval(animInt);
             swapImage(ornToDrop, 'ornbrk.png')
-            let ornBreak = new Audio('sfx/338691__natemarler__glass-break-trim.wav');
+            let ornBreak = new Audio('https://files.catbox.moe/gse1cm.wav');
             ornBreak.play();
             if (!brokenOrns.includes(ornToDrop.id)) {
                 brokenOrns.push(ornToDrop.id);
@@ -136,7 +136,7 @@ function ornamentChecker() {
 }
 
 function burnTree(theTree) {
-    let burn = new Audio('sfx/483321__craigsmith__r28-02-large-fire-burning.wav')
+    let burn = new Audio('https://files.catbox.moe/35nweb.wav')
     burn.play();
     // Tiny delay before burning the tree.
     simpleDelay(250).then(() => swapImage(theTree, "flame.gif"));
@@ -177,7 +177,7 @@ function starGleam() {
 }
 
 function breakTheGlass() {
-    let panesfx = new Audio('sfx/276938__gladkiy__breaking_glass_mirror_rode_ntg3-trim.wav');
+    let panesfx = new Audio('https://files.catbox.moe/2af7d5.wav');
     let theRock = document.getElementById("rock");
     panesfx.play();
     simpleDelay(250).then(() => {
