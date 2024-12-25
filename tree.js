@@ -1,15 +1,17 @@
 // Some variables.
 let brokenOrns = new Array;
-const giftIndex = ['teddy bear', 'toy train', 'letter blocks', 'PS2', 'baseball', 'lump of coal', 'huge d20', 'brick cellphone', 'camera', 'book'];
+const giftIndex = ['teddy.png', 'ps2.png', 'baseball.png', 'coal.png', 'rubix.png'];
 let pictureIsSwapped = false;
 let treeIsBurntAlready = false;
+let starExploded = false;
+let paneBroke = false;
 
 document.addEventListener("DOMContentLoaded", () => {
     // Logic can go here.
     document.getElementById("tree").addEventListener("click", () => {
-        console.log(brokenOrns);
+        // console.log(brokenOrns);
         if (ornamentChecker() && !treeIsBurntAlready) {
-            console.log("here!");
+            // console.log("here!");
             burnTree(document.getElementById("tree"));
         }
 
@@ -22,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!pictureIsSwapped) {
             swapImage(elem, "picture1.png");
             pictureIsSwapped = true;
-            console.log(pictureIsSwapped);
+            // console.log(pictureIsSwapped);
         } else {
             swapImage(elem, "picture0.png");
             pictureIsSwapped = false;
@@ -36,9 +38,34 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     });
 
-    // document.getElementById("gift1").addEventListener("click", () => { })
-    // document.getElementById("gift2").addEventListener("click", () => { })
-    // document.getElementById("gift3").addEventListener("click", () => { })
+    document.getElementById("star").addEventListener("click", () => {
+        if (starExploded) {
+            return null;
+        } else {
+            starGleam();
+        }
+    })
+    document.getElementById("windowpane").addEventListener("click", () => {
+        if (paneBroke) {
+            return null;
+        } else {
+            breakTheGlass();
+            paneBroke = true;
+        }
+    })
+    document.getElementById("rock").addEventListener("click", () => {
+        if (paneBroke) {
+            return null;
+        } else {
+            breakTheGlass();
+            paneBroke = true;
+        }
+    })
+    document.querySelectorAll('.gift').forEach(element => {
+        element.addEventListener("click", () => {
+            openPresent(element);
+        })
+    });
 })
 
 // Functions
@@ -47,8 +74,6 @@ function dropOrnament(ornToDrop) {
     // Move the element down until it reaches the floor, then play a glass breaking sound,
     // and replace the element's image with a broken variant.
     let animInt = null;
-    // let pos = ornToDrop.style.top; // This one drops it from the top of the tree, but nicely.
-    // let pos = ornToDrop.offsetTop; // This and the parseFloat one just teleport it.
     let pos = parseFloat(getComputedStyle(ornToDrop).getPropertyValue("top").replace('px', ''));
     clearInterval(animInt);
     animInt = setInterval(moveIt, 1);
@@ -73,10 +98,6 @@ function dropOrnament(ornToDrop) {
 function swapImage(elementToSwap, newImage) {
     // Select the targeted element and replace it with the specified new image.
     elementToSwap.style.backgroundImage = "url(" + newImage + ")";
-}
-
-function rockToPane() {
-
 }
 function snowmanWave() {
     let mans = document.getElementById("snowman");
@@ -127,4 +148,64 @@ function burnTree(theTree) {
 
 function simpleDelay(ms) {
     return new Promise((resolve => setTimeout(resolve, ms)));
+}
+
+function starGleam() {
+    let rng = Math.floor(Math.random() * 20);
+    let flash = document.getElementById("flashbang");
+    if (rng == 0) {
+        flash.classList.add('flash')
+        swapImage(document.getElementById('star'), '')
+        simpleDelay(500).then(() => {
+            flash.classList.add('flash2');
+            flash.classList.remove('flash');
+        }).then(simpleDelay(1500).then(() => {
+            flash.classList.add('flash3');
+            flash.classList.remove('flash2');
+        })).then(
+            simpleDelay(2500).then(() => {
+                flash.classList.add('flash4');
+                flash.classList.remove('flash3');
+            })).then(
+                simpleDelay(3500).then(() => flash.classList.remove('flash4')))
+        starExploded = true;
+    }
+    else {
+        swapImage(document.getElementById('star'), "star.gif");
+        simpleDelay(1750).then(() => swapImage(document.getElementById('star'), "star.png"));
+    }
+}
+
+function breakTheGlass() {
+    let panesfx = new Audio('sfx/276938__gladkiy__breaking_glass_mirror_rode_ntg3-trim.wav');
+    let theRock = document.getElementById("rock");
+    panesfx.play();
+    simpleDelay(250).then(() => {
+        document.getElementById("windowpane").classList.add('brokenglass');
+        theRock.classList.add("visiblerock");
+        let animInt = null;
+        let pos = parseFloat(getComputedStyle(theRock).getPropertyValue("top").replace('px', ''));
+        clearInterval(animInt);
+        animInt = setInterval(moveIt, 0.2);
+        function moveIt() {
+            // Might have to resort to pixels here.
+            if (parseFloat(window.getComputedStyle(theRock).getPropertyValue("top").replace('px', '')) >= 550) {
+                clearInterval(animInt);
+            } else {
+                pos++;
+                theRock.style.top = pos + "px";
+            }
+        }
+    })
+}
+
+function openPresent(gift) {
+    if (gift.classList == 'subelement gift openedAlready') {
+        return null;
+    } else {
+        console.log(gift.classList)
+        let thingamajig = giftIndex[Math.floor(Math.random() * giftIndex.length)];
+        swapImage(gift, thingamajig);
+        gift.classList.add('openedAlready');
+    }
 }

@@ -49,8 +49,8 @@ body{
 }
 .ornament{
     background-image: url("orn.png");
-    width:40px;
-    height:40px;
+    width:41px;
+    height:51px;
 }
 #orn1{
     top:20%;
@@ -88,7 +88,66 @@ body{
 #painting{
     top: 25%;
     left:80%;
-    width:120px;
-    height:140px;
+    width:131px;
+    height:178px;
     background-image: url("picture0.png");
+}
+/* #flashbang{
+    width: 0%;
+    height: 0%;
+} */
+.flash{
+    width: 800px;
+    height: 600px;
+    background: rgba(255,255,255, 100%);
+}
+.flash2{
+    width: 800px;
+    height: 600px;
+    background: rgba(255,255,255, 75%);
+}
+.flash3{
+    width: 800px;
+    height: 600px;
+    background: rgba(255,255,255, 50%);
+}
+.flash4{
+    width: 800px;
+    height: 600px;
+    background: rgba(255,255,255, 25%);
+}
+#windowpane{
+    width: 187px;
+    height: 152px;
+    top: 127px;
+    left: 417px;
+}
+#rock{
+    width:45px;
+    height:45px;
+    top:190px;
+    left:520px;
+}
+.brokenglass{
+    background-image: url('brokenglass.png');
+}
+.visiblerock{
+    background-image: url('rock.png');
+}
+.gift{
+    width:67px;
+    height:72px;
+    background-image: url('giftbox0.png');
+}
+#gift0{
+    top:520px;
+    left:90px;
+}
+#gift1{
+    top:530px;
+    left:300px;
+}
+#gift2{
+    top:522px;
+    left:370px;
 }
